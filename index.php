@@ -1,3 +1,9 @@
+<?php
+
+//if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
+if(session_id() == '' || !isset($_SESSION)){session_start();}
+
+?>
 <!DOCTYPE html>
 <html>
 
@@ -6,7 +12,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Unidad de aprendizaje Nº 4</title>
+    <title>Demo</title>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
@@ -23,24 +29,24 @@
 
     <nav class="navbar-default navbar-static-side" role="navigation">
         <div class="sidebar-collapse">
-            <ul class="nav metismenu" id="side-menu">
+            <ul class="nav metismenu" id="side-menu" >
                 <li class="nav-header">
                     <div class="dropdown profile-element"> <span>
-                            <img alt="image" class="img-circle" />
+                            <img alt="image" class="img-circle" src="img/user.png"/>
                              </span>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">Jose Guanilo Barragan</strong>
-                             </span> <span class="text-muted text-xs block">Art Director <b class="caret"></b></span> </span> </a>
+                             </span> <span class="text-muted text-xs block">Developer<b class="caret"></b></span> </span> </a>
                         <ul class="dropdown-menu animated fadeInRight m-t-xs">
                             <li><a href="profile.html">Profile</a></li>
                             <li><a href="contacts.html">Contacts</a></li>
                             <li><a href="mailbox.html">Mailbox</a></li>
                             <li class="divider"></li>
-                            <li><a href="login.html">Logout</a></li>
+                            <li><a href="logout.php">Logout</a></li>
                         </ul>
                     </div>
                     <div class="logo-element">
-                        IN+
+                        BP
                     </div>
                 </li>
                 <li>
@@ -55,20 +61,21 @@
         <div id="page-wrapper" class="gray-bg">
         <div class="row border-bottom">
         <nav class="navbar navbar-static-top  " role="navigation" style="margin-bottom: 0">
-        <div class="navbar-header">
-            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
-        </div>
-            <ul class="nav navbar-top-links navbar-right">
-                <li>
-                    <span class="m-r-sm text-muted welcome-message">Pc 04</span>
-                </li>
-                <li>
-                    <a href="login.html">
-                        <i class="fa fa-sign-out"></i> Log out
-                    </a>
-                </li>
+       
+        <ul class="nav navbar-top-links navbar-right">
+        <?php
+        if(isset($_SESSION['username'])){
+           
+            
+            echo '<li><span class="m-r-sm text-muted welcome-message">Usuario</span></li>';
+            echo '<li><a href="logout.php"><i class="fa fa-sign-out"></i> Cerrar Sesion</a></li>';
+          }
+          else{
+            echo '<li><a href="login.php">Ingresar</a></li>';
+          }
+            
+            ?>
             </ul>
-
         </nav>
         </div>
         <br>
